@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EduKeytion — Die digitale Schülerkarte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-dot"></div>
+      <span class="brand-name">EduKeytion</span>
+    </div>
+    <nav class="nav">
+      <a href="#how">Wie?</a>
+      <a href="#login" class="cta">Login</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-inner">
+      <div class="card-wrap" id="cardWrap" aria-hidden="true">
+        <div class="card" id="card">
+          <div class="card-surface">
+            <div class="chip"></div>
+            <div class="contactless">•••</div>
+            <div class="numbers">5573 2067 0587 8205</div>
+            <div class="meta">
+              <div class="name">EDUKEYTION</div>
+              <div class="valid">VALID THRU &nbsp; 07/24</div>
+            </div>
+          </div>
+          <div class="card-edge"></div>
+        </div>
+        <!-- subtle glow -->
+        <div class="card-glow"></div>
+      </div>
+
+      <div class="hero-text">
+        <h1>Die smarte Karte für Schule, Kiosk & Zugang</h1>
+        <p>EduKeytion vereint Bezahlen, Ausleihen und Zutritt in einer sicheren, modernen Lösung. Teste unseren Prototyp – schnell, datensparsam und schülergerecht.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#login">Jetzt anmelden</a>
+          <a class="btn ghost" href="#how">Mehr erfahren</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="how" class="info">
+    <h2>Wie funktioniert EduKeytion?</h2>
+    <div class="icons">
+      <div class="iconbox">
+        <div class="icon">💳</div>
+        <p>Bezahlen am Kiosk</p>
+      </div>
+      <div class="iconbox">
+        <div class="icon">🔐</div>
+        <p>Zutritt & Schließsysteme</p>
+      </div>
+      <div class="iconbox">
+        <div class="icon">🏀</div>
+        <p>Ausleihe & Nachverfolgung</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="login" class="login-panel">
+    <h2>Login</h2>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Demo: Login noch nicht verbunden');">
+      <input type="email" placeholder="E-Mail" required>
+      <input type="password" placeholder="Passwort" required>
+      <button class="btn primary" type="submit">Einloggen</button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> EduKeytion — Entwickelt von Team EduKey</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

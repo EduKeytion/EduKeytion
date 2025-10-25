@@ -1,0 +1,61 @@
+// small helpers for the card 3D interaction
+const card = document.getElementById('card');
+const wrap = document.getElementById('cardWrap');
+const yearEl = document.getElementById('year');
+yearEl.textContent = new Date().getFullYear();
+
+// reduce motion if user prefers reduced motion
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduced) {
+  wrap.style.animation = 'none';
+  card.style.transition = 'transform 200ms ease';
+}
+
+// on mouse move -> tilt card
+wrap.addEventListener('mousemove', (e) => {
+  const rect = wrap.getBoundingClientRect();
+  const x = e.clientX - rect.left; // x position within element
+  const y = e.clientY - rect.top;  // y position within element
+  const px = (x / rect.width) - 0.5;
+  const py = (y / rect.height) - 0.5;
+
+  // stronger rotation on desktop, small on mobile
+  const rotateY = px * 18; // left/right
+  const rotateX = -py * 10; // up/down
+  card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(6px)`;
+});
+
+// on mouse leave -> resume auto-drift animation
+wrap.addEventListener('mouseleave', () => {
+  // clear inline transform so CSS animation resumes
+  card.style.transform = '';
+});
+
+// pause animation while clicking / touching (prevents jump)
+wrap.addEventListener('mousedown', () => {
+  wrap.style.animationPlayState = 'paused';
+});
+wrap.addEventListener('mouseup', () => {
+  wrap.style.animationPlayState = 'running';
+});
+
+// mobile touch tilt
+let touchStart = null;
+wrap.addEventListener('touchstart', (e) => {
+  touchStart = e.touches[0];
+  wrap.style.animationPlayState = 'paused';
+}, {passive:true});
+wrap.addEventListener('touchmove', (e) => {
+  if(!touchStart) return;
+  const t = e.touches[0];
+  const dx = t.clientX - touchStart.clientX;
+  const dy = t.clientY - touchStart.clientY;
+  const rotateY = dx / 8;
+  const rotateX = -dy / 12;
+  card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+}, {passive:true});
+wrap.addEventListener('touchend', () => {
+  touchStart = null;
+  wrap.style.animationPlayState = 'running';
+  card.style.transform = '';
+});
